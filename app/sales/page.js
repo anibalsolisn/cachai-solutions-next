@@ -87,4 +87,14 @@ export default function SalesPage() {
       </section>
       <Footer />
       <style>{`
-        @media(max-width:960px){.sales-grid,.sales-cta-gr
+        @media (max-width: 960px) {
+          .sales-grid { grid-template-columns: 1fr !important; }
+          .sales-cta-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 600px) {
+          section { padding-left: 24px !important; padding-right: 24px !important; }
+        }
+      `}</style>
+    </main>
+  );
+}
