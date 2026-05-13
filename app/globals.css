@@ -1,0 +1,26 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-onest), sans-serif;
+  background: #ffffff;
+  color: #0d2030;
+  line-height: 1.6;
+}
+
+:root {
+  --dark:   #0a1a22;
+  --teal:   #2a5f72;
+  --teal2:  #1e4a5a;
+  --accent: #7de0f0;
+  --grey:   #6b8a96;
+  --line:   rgba(13,30,42,.1);
+  --white:  #ffffff;
+}
