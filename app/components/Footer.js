@@ -44,7 +44,7 @@ export default function Footer() {
             {[
               { label: 'Growth Marketing', href: '/growth' },
               { label: 'Email Marketing', href: '/email' },
-              { label: 'SEO Ecommerce', href: '/seo' },
+              { label: 'SEO-GEO', href: '/seo-geo' },
               { label: 'Analytics & Data', href: '/analytics' },
               { label: 'Sales Strategy', href: '/sales' },
               { label: 'CRO', href: '/cro' },

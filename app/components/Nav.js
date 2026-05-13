@@ -70,7 +70,7 @@ export default function Nav() {
             <div style={megaColTitle}>Crecer</div>
             {megaLink('Growth Marketing', '/growth', true)}
             {megaLink('Email Marketing', '/email', true)}
-            {megaLink('SEO Ecommerce', '/seo', true)}
+            {megaLink('SEO-GEO', '/seo-geo', true)}
             {megaLink('Analytics & Data', '/analytics', true)}
             {megaLink('Sales Strategy', '/sales', true)}
             {megaLink('Conversion Rate Optimization', '/cro', true)}
@@ -96,7 +96,7 @@ export default function Nav() {
         <div style={pillSectionTitle}>Crecer</div>
         {pillMegaLink('Growth Marketing', '/growth', true)}
         {pillMegaLink('Email Marketing', '/email', true)}
-        {pillMegaLink('SEO Ecommerce', '/seo', true)}
+        {pillMegaLink('SEO-GEO', '/seo-geo', true)}
         {pillMegaLink('Analytics & Data', '/analytics', true)}
         {pillMegaLink('Sales Strategy', '/sales', true)}
         {pillMegaLink('CRO', '/cro', true)}
@@ -181,7 +181,7 @@ export default function Nav() {
           <div style={mobileSectionTitle}>Crecer</div>
           <div style={{ ...mobileLink, opacity: .4, cursor: 'default' }}>Growth Marketing <span style={mobileSoon}>Próximo</span></div>
           <div style={{ ...mobileLink, opacity: .4, cursor: 'default' }}>Email Marketing <span style={mobileSoon}>Próximo</span></div>
-          <div style={{ ...mobileLink, opacity: .4, cursor: 'default' }}>SEO Ecommerce <span style={mobileSoon}>Próximo</span></div>
+          <div style={{ ...mobileLink, opacity: .4, cursor: 'default' }}>SEO-GEO <span style={mobileSoon}>Próximo</span></div>
           <div style={{ ...mobileLink, opacity: .4, cursor: 'default' }}>Analytics & Data <span style={mobileSoon}>Próximo</span></div>
           <div style={{ ...mobileLink, opacity: .4, cursor: 'default' }}>Sales Strategy <span style={mobileSoon}>Próximo</span></div>
           <div style={{ ...mobileLink, opacity: .4, cursor: 'default' }}>CRO <span style={mobileSoon}>Próximo</span></div>
