@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 
 const areas = [
   { id: 'ux', title: 'UX & Diseño', desc: 'Identificamos los puntos de fricción en tu tienda que están costando ventas. Cada elemento tiene un propósito: convertir.', items: ['Heatmaps y session recordings', 'Análisis de flujo de checkout', 'Jerarquía visual y CTAs', 'Mobile UX optimization'], stat: '+38%', statLabel: 'Conversión mobile' },

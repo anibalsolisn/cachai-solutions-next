@@ -3,14 +3,14 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-export default function Nav() {
+export default function NavEN() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobilePanel, setMobilePanel] = useState(1);
   const [megaOpen, setMegaOpen] = useState(false);
   const megaTimer = useRef(null);
   const pathname = usePathname();
-  const enPath = '/en' + pathname;
+  const esPath = pathname.replace('/en', '') || '/';
 
   const openMega = () => { clearTimeout(megaTimer.current); setMegaOpen(true); };
   const closeMega = () => { megaTimer.current = setTimeout(() => setMegaOpen(false), 150); };
@@ -36,20 +36,20 @@ export default function Nav() {
         transform: scrolled ? 'translateY(-16px)' : 'translateY(0)',
         pointerEvents: scrolled ? 'none' : 'all',
       }}>
-        <Link href="/"><img src="/logo_cachaisolutions_blanco.svg" alt="Cachai" style={{ height: 32 }} /></Link>
+        <Link href="/en"><img src="/logo_cachaisolutions_blanco.svg" alt="Cachai" style={{ height: 32 }} /></Link>
         <nav style={{ display: 'flex', alignItems: 'center', gap: 0 }} className="nav-top-links">
-          <Link href="/#casos" style={linkStyle}>Casos</Link>
-          <Link href="/#nosotros" style={linkStyle}>Nosotros</Link>
-          <Link href="/#faq" style={linkStyle}>FAQ</Link>
+          <Link href="/en/#work" style={linkStyle}>Work</Link>
+          <Link href="/en/#about" style={linkStyle}>About</Link>
+          <Link href="/en/#faq" style={linkStyle}>FAQ</Link>
           <div onMouseEnter={openMega} onMouseLeave={closeMega}>
             <span style={{ ...linkStyle, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-              Servicios
+              Services
               <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </span>
           </div>
-          <Link href={enPath} style={langStyle}>EN</Link>
+          <Link href={esPath} style={langStyle}>ES</Link>
         </nav>
-        <Link href="/#contacto" style={ctaStyle}>Probemos juntos</Link>
+        <Link href="/en/#contacto" style={ctaStyle}>Let's talk</Link>
       </header>
 
       {/* MEGA MENU TOP */}
@@ -65,19 +65,19 @@ export default function Nav() {
       }}>
         <div style={{ maxWidth: 900, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80 }}>
           <div>
-            <div style={megaColTitle}>Construir</div>
-            {megaLink('Ecommerce & Shopify', '/build', false)}
-            {megaLink('Migraciones a Shopify', '/migrations', false)}
-            {megaLink('Shopify Plus', '/shopify-plus', false)}
+            <div style={megaColTitle}>Build</div>
+            {megaLink('Ecommerce & Shopify', '/en/build', false)}
+            {megaLink('Shopify Migrations', '/en/migrations', false)}
+            {megaLink('Shopify Plus', '/en/shopify-plus', false)}
           </div>
           <div>
-            <div style={megaColTitle}>Crecer</div>
-            {megaLink('Growth Marketing', '/growth', false)}
-            {megaLink('Email Marketing', '/email', false)}
-            {megaLink('SEO & GEO', '/seo-geo', false)}
-            {megaLink('Analytics & Data', '/analytics', false)}
-            {megaLink('Sales Strategy', '/sales', false)}
-            {megaLink('Conversion Rate Optimization', '/cro', false)}
+            <div style={megaColTitle}>Grow</div>
+            {megaLink('Growth Marketing', '/en/growth', false)}
+            {megaLink('Email Marketing', '/en/email', false)}
+            {megaLink('SEO & GEO', '/en/seo-geo', false)}
+            {megaLink('Analytics & Data', '/en/analytics', false)}
+            {megaLink('Sales Strategy', '/en/sales', false)}
+            {megaLink('Conversion Rate Optimization', '/en/cro', false)}
           </div>
         </div>
       </div>
@@ -93,17 +93,17 @@ export default function Nav() {
         transition: 'opacity .2s ease, visibility .2s ease',
         pointerEvents: megaOpen && scrolled ? 'all' : 'none',
       }}>
-        <div style={pillSectionTitle}>Construir</div>
-        {pillMegaLink('Ecommerce & Shopify', '/build', false)}
-        {pillMegaLink('Migraciones a Shopify', '/migrations', false)}
-        {pillMegaLink('Shopify Plus', '/shopify-plus', false)}
-        <div style={pillSectionTitle}>Crecer</div>
-        {pillMegaLink('Growth Marketing', '/growth', false)}
-        {pillMegaLink('Email Marketing', '/email', false)}
-        {pillMegaLink('SEO & GEO', '/seo-geo', false)}
-        {pillMegaLink('Analytics & Data', '/analytics', false)}
-        {pillMegaLink('Sales Strategy', '/sales', false)}
-        {pillMegaLink('CRO', '/cro', false)}
+        <div style={pillSectionTitle}>Build</div>
+        {pillMegaLink('Ecommerce & Shopify', '/en/build', false)}
+        {pillMegaLink('Shopify Migrations', '/en/migrations', false)}
+        {pillMegaLink('Shopify Plus', '/en/shopify-plus', false)}
+        <div style={pillSectionTitle}>Grow</div>
+        {pillMegaLink('Growth Marketing', '/en/growth', false)}
+        {pillMegaLink('Email Marketing', '/en/email', false)}
+        {pillMegaLink('SEO & GEO', '/en/seo-geo', false)}
+        {pillMegaLink('Analytics & Data', '/en/analytics', false)}
+        {pillMegaLink('Sales Strategy', '/en/sales', false)}
+        {pillMegaLink('CRO', '/en/cro', false)}
       </div>
 
       {/* ISOTIPO */}
@@ -112,7 +112,7 @@ export default function Nav() {
         opacity: scrolled ? 1 : 0, transition: 'opacity .4s ease',
         pointerEvents: scrolled ? 'all' : 'none', mixBlendMode: 'difference',
       }}>
-        <Link href="/"><img src="/isotipo.svg" alt="Cachai" style={{ height: 36, filter: 'brightness(0) invert(1)' }} /></Link>
+        <Link href="/en"><img src="/isotipo.svg" alt="Cachai" style={{ height: 36, filter: 'brightness(0) invert(1)' }} /></Link>
       </div>
 
       {/* PILL NAV */}
@@ -126,16 +126,16 @@ export default function Nav() {
         transition: 'opacity .4s ease',
       }}>
         <div className="pill-desktop-links" style={{ display: 'flex', alignItems: 'center' }}>
-          <Link href="/#casos" style={pillLink}>Casos</Link>
-          <Link href="/#nosotros" style={pillLink}>Nosotros</Link>
-          <Link href="/#faq" style={pillLink}>FAQ</Link>
+          <Link href="/en/#work" style={pillLink}>Work</Link>
+          <Link href="/en/#about" style={pillLink}>About</Link>
+          <Link href="/en/#faq" style={pillLink}>FAQ</Link>
           <div onMouseEnter={openMega} onMouseLeave={closeMega}>
             <span style={{ ...pillLink, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-              Servicios
+              Services
               <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </span>
           </div>
-          <Link href={enPath} style={pillLangStyle}>EN</Link>
+          <Link href={esPath} style={pillLangStyle}>ES</Link>
         </div>
         <button className="pill-hamburger" onClick={() => setMobileOpen(true)}
           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px 12px', display: 'none', flexDirection: 'column', gap: 5 }}>
@@ -143,7 +143,7 @@ export default function Nav() {
           <span style={{ display: 'block', width: 22, height: 2, background: '#e8f8fc', borderRadius: 2 }}/>
           <span style={{ display: 'block', width: 22, height: 2, background: '#e8f8fc', borderRadius: 2 }}/>
         </button>
-        <Link href="/#contacto" style={pillCta} className="pill-cta">Probemos juntos →</Link>
+        <Link href="/en/#contacto" style={pillCta} className="pill-cta">Let's talk →</Link>
       </nav>
 
       {/* MOBILE OVERLAY */}
@@ -163,13 +163,13 @@ export default function Nav() {
           transition: 'transform .35s cubic-bezier(.16,1,.3,1)',
           transform: mobilePanel === 1 ? 'translateX(0)' : 'translateX(-100%)',
         }}>
-          <Link href="/#casos" style={mobileLink} onClick={closeMobile}>Casos</Link>
-          <Link href="/#nosotros" style={mobileLink} onClick={closeMobile}>Nosotros</Link>
-          <Link href="/#faq" style={mobileLink} onClick={closeMobile}>FAQ</Link>
+          <Link href="/en/#work" style={mobileLink} onClick={closeMobile}>Work</Link>
+          <Link href="/en/#about" style={mobileLink} onClick={closeMobile}>About</Link>
+          <Link href="/en/#faq" style={mobileLink} onClick={closeMobile}>FAQ</Link>
           <button style={{ ...mobileLink, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', justifyContent: 'space-between' }}
-            onClick={() => setMobilePanel(2)}>Servicios <span style={{ opacity: .4 }}>›</span></button>
-          <Link href={enPath} style={{ ...mobileLink, color: 'rgba(232,248,252,.5)', fontSize: 12 }} onClick={closeMobile}>
-            Ver en inglés <span style={{ opacity: .4 }}>→</span>
+            onClick={() => setMobilePanel(2)}>Services <span style={{ opacity: .4 }}>›</span></button>
+          <Link href={esPath} style={{ ...mobileLink, color: 'rgba(232,248,252,.5)', fontSize: 12 }} onClick={closeMobile}>
+            Ver en español <span style={{ opacity: .4 }}>→</span>
           </Link>
         </div>
         <div style={{
@@ -180,19 +180,19 @@ export default function Nav() {
           <button style={{ ...mobileLink, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', gap: 8, justifyContent: 'flex-start', color: 'rgba(232,248,252,.6)', fontSize: 12 }}
             onClick={() => setMobilePanel(1)}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12l7 7M5 12l7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            Volver
+            Back
           </button>
-          <div style={mobileSectionTitle}>Construir</div>
-          <Link href="/build" style={mobileLink} onClick={closeMobile}>Ecommerce & Shopify <span style={{ opacity: .3 }}>→</span></Link>
-          <Link href="/migrations" style={mobileLink} onClick={closeMobile}>Migraciones a Shopify <span style={{ opacity: .3 }}>→</span></Link>
-          <Link href="/shopify-plus" style={mobileLink} onClick={closeMobile}>Shopify Plus <span style={{ opacity: .3 }}>→</span></Link>
-          <div style={mobileSectionTitle}>Crecer</div>
-          <Link href="/growth" style={mobileLink} onClick={closeMobile}>Growth Marketing <span style={{ opacity: .3 }}>→</span></Link>
-          <Link href="/email" style={mobileLink} onClick={closeMobile}>Email Marketing <span style={{ opacity: .3 }}>→</span></Link>
-          <Link href="/seo-geo" style={mobileLink} onClick={closeMobile}>SEO & GEO <span style={{ opacity: .3 }}>→</span></Link>
-          <Link href="/analytics" style={mobileLink} onClick={closeMobile}>Analytics & Data <span style={{ opacity: .3 }}>→</span></Link>
-          <Link href="/sales" style={mobileLink} onClick={closeMobile}>Sales Strategy <span style={{ opacity: .3 }}>→</span></Link>
-          <Link href="/cro" style={mobileLink} onClick={closeMobile}>CRO <span style={{ opacity: .3 }}>→</span></Link>
+          <div style={mobileSectionTitle}>Build</div>
+          <Link href="/en/build" style={mobileLink} onClick={closeMobile}>Ecommerce & Shopify <span style={{ opacity: .3 }}>→</span></Link>
+          <Link href="/en/migrations" style={mobileLink} onClick={closeMobile}>Shopify Migrations <span style={{ opacity: .3 }}>→</span></Link>
+          <Link href="/en/shopify-plus" style={mobileLink} onClick={closeMobile}>Shopify Plus <span style={{ opacity: .3 }}>→</span></Link>
+          <div style={mobileSectionTitle}>Grow</div>
+          <Link href="/en/growth" style={mobileLink} onClick={closeMobile}>Growth Marketing <span style={{ opacity: .3 }}>→</span></Link>
+          <Link href="/en/email" style={mobileLink} onClick={closeMobile}>Email Marketing <span style={{ opacity: .3 }}>→</span></Link>
+          <Link href="/en/seo-geo" style={mobileLink} onClick={closeMobile}>SEO & GEO <span style={{ opacity: .3 }}>→</span></Link>
+          <Link href="/en/analytics" style={mobileLink} onClick={closeMobile}>Analytics & Data <span style={{ opacity: .3 }}>→</span></Link>
+          <Link href="/en/sales" style={mobileLink} onClick={closeMobile}>Sales Strategy <span style={{ opacity: .3 }}>→</span></Link>
+          <Link href="/en/cro" style={mobileLink} onClick={closeMobile}>CRO <span style={{ opacity: .3 }}>→</span></Link>
         </div>
       </div>
 
@@ -221,11 +221,11 @@ const megaColTitle = { fontSize: 10, fontWeight: 600, letterSpacing: '.16em', te
 const pillSectionTitle = { fontSize: 10, fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(232,248,252,.3)', padding: '8px 18px', borderBottom: '1px solid rgba(125,205,232,.08)', fontFamily: 'var(--font-onest)' };
 
 function megaLink(label, href, soon) {
-  if (soon) return <div key={label} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid rgba(255,255,255,.05)', fontFamily: 'var(--font-onest)', fontSize: 14, color: 'rgba(232,248,252,.3)' }}>{label} <span style={{ fontSize: 10, background: 'rgba(255,255,255,.06)', padding: '2px 7px', borderRadius: 2 }}>Próximo</span></div>;
+  if (soon) return <div key={label} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid rgba(255,255,255,.05)', fontFamily: 'var(--font-onest)', fontSize: 14, color: 'rgba(232,248,252,.3)' }}>{label} <span style={{ fontSize: 10, background: 'rgba(255,255,255,.06)', padding: '2px 7px', borderRadius: 2 }}>Coming soon</span></div>;
   return <Link key={label} href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid rgba(255,255,255,.05)', fontFamily: 'var(--font-onest)', fontSize: 14, color: '#e8f8fc', textDecoration: 'none' }}>{label} <span style={{ opacity: .3 }}>→</span></Link>;
 }
 
 function pillMegaLink(label, href, soon) {
-  if (soon) return <div key={label} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 18px', borderBottom: '1px solid rgba(125,205,232,.08)', fontFamily: 'var(--font-onest)', fontSize: 12, color: 'rgba(232,248,252,.35)' }}>{label} <span style={{ fontSize: 10, background: 'rgba(255,255,255,.06)', padding: '1px 6px', borderRadius: 2 }}>Próximo</span></div>;
+  if (soon) return <div key={label} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 18px', borderBottom: '1px solid rgba(125,205,232,.08)', fontFamily: 'var(--font-onest)', fontSize: 12, color: 'rgba(232,248,252,.35)' }}>{label} <span style={{ fontSize: 10, background: 'rgba(255,255,255,.06)', padding: '1px 6px', borderRadius: 2 }}>Coming soon</span></div>;
   return <Link key={label} href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 18px', borderBottom: '1px solid rgba(125,205,232,.08)', fontFamily: 'var(--font-onest)', fontSize: 12, color: '#e8f8fc', textDecoration: 'none' }}>{label} <span style={{ opacity: .3 }}>→</span></Link>;
 }

@@ -1,6 +1,5 @@
 import { Playfair_Display, Onest } from "next/font/google";
 import "./globals.css";
-import Nav from "./components/Nav";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -22,10 +21,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es" className={`${playfair.variable} ${onest.variable}`}>
-      <body>
-        <Nav />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

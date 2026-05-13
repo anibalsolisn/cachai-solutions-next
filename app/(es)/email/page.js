@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 
 const flows = [
   { id: 'welcome', title: 'Welcome Series', desc: 'Primera impresión que convierte. Secuencia de bienvenida que presenta tu marca y genera la primera compra.', stat: '+35%', statLabel: 'Conversión primera compra' },
