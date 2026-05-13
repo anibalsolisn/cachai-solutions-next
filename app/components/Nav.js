@@ -64,16 +64,16 @@ export default function Nav() {
             <div style={megaColTitle}>Construir</div>
             {megaLink('Ecommerce & Shopify', '/build', false)}
             {megaLink('Migraciones a Shopify', '/migrations', false)}
-            {megaLink('Shopify Plus', '/shopify-plus', true)}
+            {megaLink('Shopify Plus', '/shopify-plus', false)}
           </div>
           <div>
             <div style={megaColTitle}>Crecer</div>
-            {megaLink('Growth Marketing', '/growth', true)}
-            {megaLink('Email Marketing', '/email', true)}
-            {megaLink('SEO-GEO', '/seo-geo', true)}
-            {megaLink('Analytics & Data', '/analytics', true)}
-            {megaLink('Sales Strategy', '/sales', true)}
-            {megaLink('Conversion Rate Optimization', '/cro', true)}
+            {megaLink('Growth Marketing', '/growth', false)}
+            {megaLink('Email Marketing', '/email', false)}
+            {megaLink('SEO & GEO', '/seo-geo', false)}
+            {megaLink('Analytics & Data', '/analytics', false)}
+            {megaLink('Sales Strategy', '/sales', false)}
+            {megaLink('Conversion Rate Optimization', '/cro', false)}
           </div>
         </div>
       </div>
@@ -92,14 +92,14 @@ export default function Nav() {
         <div style={pillSectionTitle}>Construir</div>
         {pillMegaLink('Ecommerce & Shopify', '/build', false)}
         {pillMegaLink('Migraciones a Shopify', '/migrations', false)}
-        {pillMegaLink('Shopify Plus', '/shopify-plus', true)}
+        {pillMegaLink('Shopify Plus', '/shopify-plus', false)}
         <div style={pillSectionTitle}>Crecer</div>
-        {pillMegaLink('Growth Marketing', '/growth', true)}
-        {pillMegaLink('Email Marketing', '/email', true)}
-        {pillMegaLink('SEO-GEO', '/seo-geo', true)}
-        {pillMegaLink('Analytics & Data', '/analytics', true)}
-        {pillMegaLink('Sales Strategy', '/sales', true)}
-        {pillMegaLink('CRO', '/cro', true)}
+        {pillMegaLink('Growth Marketing', '/growth', false)}
+        {pillMegaLink('Email Marketing', '/email', false)}
+        {pillMegaLink('SEO & GEO', '/seo-geo', false)}
+        {pillMegaLink('Analytics & Data', '/analytics', false)}
+        {pillMegaLink('Sales Strategy', '/sales', false)}
+        {pillMegaLink('CRO', '/cro', false)}
       </div>
 
       {/* ISOTIPO */}
@@ -153,6 +153,7 @@ export default function Nav() {
         transform: mobileOpen ? 'translateY(0)' : 'translateY(12px)',
         transition: 'opacity .3s ease, transform .3s ease, visibility .3s ease',
       }}>
+        {/* Panel 1 */}
         <div style={{
           position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', overflowY: 'auto',
           transition: 'transform .35s cubic-bezier(.16,1,.3,1)',
@@ -164,6 +165,8 @@ export default function Nav() {
           <button style={{ ...mobileLink, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', justifyContent: 'space-between' }}
             onClick={() => setMobilePanel(2)}>Servicios <span style={{ opacity: .4 }}>›</span></button>
         </div>
+
+        {/* Panel 2 — Servicios */}
         <div style={{
           position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', overflowY: 'auto',
           transition: 'transform .35s cubic-bezier(.16,1,.3,1)',
@@ -177,14 +180,14 @@ export default function Nav() {
           <div style={mobileSectionTitle}>Construir</div>
           <Link href="/build" style={mobileLink} onClick={closeMobile}>Ecommerce & Shopify <span style={{ opacity: .3 }}>→</span></Link>
           <Link href="/migrations" style={mobileLink} onClick={closeMobile}>Migraciones a Shopify <span style={{ opacity: .3 }}>→</span></Link>
-          <div style={{ ...mobileLink, opacity: .4, cursor: 'default' }}>Shopify Plus <span style={mobileSoon}>Próximo</span></div>
+          <Link href="/shopify-plus" style={mobileLink} onClick={closeMobile}>Shopify Plus <span style={{ opacity: .3 }}>→</span></Link>
           <div style={mobileSectionTitle}>Crecer</div>
-          <div style={{ ...mobileLink, opacity: .4, cursor: 'default' }}>Growth Marketing <span style={mobileSoon}>Próximo</span></div>
-          <div style={{ ...mobileLink, opacity: .4, cursor: 'default' }}>Email Marketing <span style={mobileSoon}>Próximo</span></div>
-          <div style={{ ...mobileLink, opacity: .4, cursor: 'default' }}>SEO-GEO <span style={mobileSoon}>Próximo</span></div>
-          <div style={{ ...mobileLink, opacity: .4, cursor: 'default' }}>Analytics & Data <span style={mobileSoon}>Próximo</span></div>
-          <div style={{ ...mobileLink, opacity: .4, cursor: 'default' }}>Sales Strategy <span style={mobileSoon}>Próximo</span></div>
-          <div style={{ ...mobileLink, opacity: .4, cursor: 'default' }}>CRO <span style={mobileSoon}>Próximo</span></div>
+          <Link href="/growth" style={mobileLink} onClick={closeMobile}>Growth Marketing <span style={{ opacity: .3 }}>→</span></Link>
+          <Link href="/email" style={mobileLink} onClick={closeMobile}>Email Marketing <span style={{ opacity: .3 }}>→</span></Link>
+          <Link href="/seo-geo" style={mobileLink} onClick={closeMobile}>SEO & GEO <span style={{ opacity: .3 }}>→</span></Link>
+          <Link href="/analytics" style={mobileLink} onClick={closeMobile}>Analytics & Data <span style={{ opacity: .3 }}>→</span></Link>
+          <Link href="/sales" style={mobileLink} onClick={closeMobile}>Sales Strategy <span style={{ opacity: .3 }}>→</span></Link>
+          <Link href="/cro" style={mobileLink} onClick={closeMobile}>CRO <span style={{ opacity: .3 }}>→</span></Link>
         </div>
       </div>
 
@@ -207,7 +210,6 @@ const pillLink = { fontSize: 13, fontWeight: 400, color: 'rgba(208,240,248,.75)'
 const pillCta = { background: '#fff', color: '#0d2030', padding: '10px 18px', borderRadius: 4, fontSize: 13, fontWeight: 700, textDecoration: 'none', marginLeft: 6, whiteSpace: 'nowrap' };
 const mobileLink = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 20px', borderBottom: '1px solid rgba(125,205,232,.08)', fontFamily: 'var(--font-onest)', fontSize: 13, fontWeight: 500, color: '#e8f8fc', textDecoration: 'none', width: '100%' };
 const mobileSectionTitle = { padding: '8px 20px', fontSize: 10, fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(232,248,252,.3)', borderBottom: '1px solid rgba(125,205,232,.08)', fontFamily: 'var(--font-onest)' };
-const mobileSoon = { fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,.25)', background: 'rgba(255,255,255,.06)', padding: '2px 7px', borderRadius: 2 };
 const megaColTitle = { fontSize: 10, fontWeight: 600, letterSpacing: '.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,.3)', marginBottom: 20, fontFamily: 'var(--font-onest)' };
 const pillSectionTitle = { fontSize: 10, fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(232,248,252,.3)', padding: '8px 18px', borderBottom: '1px solid rgba(125,205,232,.08)', fontFamily: 'var(--font-onest)' };
 
