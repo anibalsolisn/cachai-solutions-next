@@ -58,7 +58,7 @@ export default function FooterEN() {
           </div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-          <div style={{ fontSize: 12, color: 'rgba(255,255,255,.2)' }}>© 2025 Cachai Solutions. All rights reserved.</div>
+          <div style={{ fontSize: 12, color: 'rgba(255,255,255,.2)' }}>© 2026 Cachai Solutions. All rights reserved.</div>
           <div style={{ display: 'flex', gap: 24 }}>
             <span style={{ fontSize: 12, color: 'rgba(255,255,255,.2)' }}>Privacy</span>
             <span style={{ fontSize: 12, color: 'rgba(255,255,255,.2)' }}>Terms</span>
