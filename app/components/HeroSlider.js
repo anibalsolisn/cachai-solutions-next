@@ -4,18 +4,21 @@ import { useState, useEffect, useRef } from 'react';
 const slides = [
   {
     video: '/Banner_hero_03.mp4',
+    image: null,
     lines: ['Escalamos', 'Marcas', 'De verdad'],
     lineColors: ['#e0f8ff', '#7DCDE8', '#e0f8ff'],
-    srv: { title: 'Shopify & Ecommerce', num: '01', desc: 'Construimos y optimizamos tiendas que venden', href: '/shopify' }
+    srv: { title: 'Shopify & Ecommerce', num: '01', desc: 'Construimos y optimizamos tiendas que venden', href: '/build' }
   },
   {
-    video: '/Hero_banner_04.mp4',
+    video: null,
+    image: '/hero-banner-02.jpg',
     lines: ['Crecemos', 'Tu revenue', 'Con datos'],
     lineColors: ['#e0f8ff', '#7DCDE8', '#e0f8ff'],
     srv: { title: 'Growth Marketing', num: '02', desc: 'Meta Ads, Google Ads y email que convierten', href: '/growth' }
   },
   {
-    video: '/Banner_hero_05.mp4',
+    video: null,
+    image: '/hero-banner-03.jpg',
     lines: ['Diagnóstico', 'Estrategia', 'Escala'],
     lineColors: ['#e0f8ff', '#7DCDE8', '#e0f8ff'],
     srv: { title: 'Nuestro Proceso', num: '03', desc: 'De cero a escala en 90 días', href: '/#contacto' }
@@ -48,11 +51,21 @@ export default function HeroSlider() {
 
       {/* Videos */}
       {slides.map((s, i) => (
-        <video key={i} src={s.video}
-          autoPlay={i === 0} muted loop playsInline
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: i === current ? 1 : 0, transition: 'none' }}
-        />
-      ))}
+  s.video ? (
+    <video key={i} src={s.video} autoPlay muted loop playsInline
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: i === current ? 1 : 0, transition: 'none' }}
+    />
+  ) : (
+    <div key={i} style={{
+      position: 'absolute', inset: 0,
+      backgroundImage: `url(${s.image})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      opacity: i === current ? 1 : 0,
+      transition: 'none',
+    }} />
+  )
+))}
 
       {/* Overlay */}
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(0deg, rgba(5,15,20,.88) 0%, rgba(5,15,20,.6) 45%, rgba(5,15,20,.3) 100%)', zIndex: 1 }} />
