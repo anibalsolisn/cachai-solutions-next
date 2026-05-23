@@ -135,7 +135,23 @@ function CursorNext({ onNext }) {
     <>
       <div
         onClick={onNext}
-        onMouseMove={e => setPos({ x: e.clientX, y: e.clientY })}
+        onMouseMove={e => {
+          setPos({ x: e.clientX, y: e.clientY });
+          const el = document.elementFromPoint(e.clientX, e.clientY);
+          const isClickable = el && (
+            el.closest('a') ||
+            el.closest('button') ||
+            el.closest('.hero-srv-card') ||
+            el.closest('.hero-progress-bar')
+          );
+          if (isClickable) {
+            setVisible(false);
+            e.currentTarget.style.cursor = 'pointer';
+          } else {
+            setVisible(true);
+            e.currentTarget.style.cursor = 'none';
+          }
+        }}
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}
         style={{ position: 'absolute', inset: 0, zIndex: 3, cursor: 'none' }}
@@ -144,16 +160,14 @@ function CursorNext({ onNext }) {
       <div style={{
         position: 'fixed', left: pos.x, top: pos.y,
         width: 100, height: 100,
-        transform: 'translate(-50%, -50%)',
+        transform: 'translate(-50%,-50%)',
         pointerEvents: 'none', zIndex: 9999,
         opacity: visible ? 1 : 0,
         transition: 'opacity .3s',
       }}>
         <svg viewBox="0 0 100 100" width="100" height="100"
           style={{ position: 'absolute', inset: 0, animation: 'rotateCursor 8s linear infinite' }}>
-          <defs>
-            <path id="cp" d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"/>
-          </defs>
+          <defs><path id="cp" d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"/></defs>
           <text fontSize="9" fill="rgba(255,255,255,0.75)" fontFamily="sans-serif" letterSpacing="3.2">
             <textPath href="#cp">NEXT · NEXT · NEXT · NEXT · NEXT · NEXT ·</textPath>
           </text>
@@ -164,10 +178,7 @@ function CursorNext({ onNext }) {
           </svg>
         </div>
       </div>
-      <style>{`
-        @keyframes rotateCursor { to { transform: rotate(360deg); } }
-        @media (max-width: 960px) { .hero-click-area { display: none; } }
-      `}</style>
+      <style>{`@keyframes rotateCursor { to { transform: rotate(360deg); } } @media(max-width:960px){.hero-click-area{display:none}}`}</style>
     </>
   );
 }
