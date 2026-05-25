@@ -114,12 +114,26 @@ export default function HeroSliderEN() {
 function CursorNext({ onNext }) {
   const [pos, setPos] = useState({ x: -200, y: -200 });
   const [visible, setVisible] = useState(false);
+  const touchStartY = useRef(0);
+  const touchStartTime = useRef(0);
 
   return (
     <>
       <div
         onClick={onNext}
-        onTouchEnd={e => { e.preventDefault(); onNext(); }}
+        onTouchStart={e => {
+          touchStartY.current = e.touches[0].clientY;
+          touchStartTime.current = Date.now();
+        }}
+        onTouchEnd={e => {
+          const deltaY = Math.abs(e.changedTouches[0].clientY - touchStartY.current);
+          const deltaTime = Date.now() - touchStartTime.current;
+          // Solo avanzar si fue tap rápido y sin scroll (menos de 10px de movimiento)
+          if (deltaY < 10 && deltaTime < 300) {
+            e.preventDefault();
+            onNext();
+          }
+        }}
         onMouseMove={e => {
           setPos({ x: e.clientX, y: e.clientY });
           const el = document.elementFromPoint(e.clientX, e.clientY);
@@ -163,7 +177,12 @@ function CursorNext({ onNext }) {
           </svg>
         </div>
       </div>
-      <style>{`@keyframes rotateCursor { to { transform: rotate(360deg); } } @media(max-width:960px){.hero-click-area{cursor:auto !important;}}`}</style>
+      <style>{`
+  @keyframes rotateCursor { to { transform: rotate(360deg); } }
+  @media(max-width:960px) { 
+    .hero-click-area { cursor: auto !important; }
+  }
+`}</style>
     </>
   );
 }
