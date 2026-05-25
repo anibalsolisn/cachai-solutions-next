@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 const slides = [
   {
     video: '/Banner_hero_03.mp4',
+    image: null,
     lines: ['We scale', 'Brands', 'For real.'],
     lineColors: ['#e0f8ff', '#7DCDE8', '#e0f8ff'],
     srv: { title: 'Shopify & Ecommerce', num: '01', desc: 'We build and optimize stores that actually sell', href: '/en/build' }
@@ -47,25 +48,29 @@ export default function HeroSliderEN() {
 
   return (
     <section style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden', background: '#1e4a5a' }}>
+
       {slides.map((s, i) => (
-  s.video ? (
-    <video key={i} src={s.video} autoPlay muted loop playsInline
-      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: i === current ? 1 : 0, transition: 'none' }}
-    />
-  ) : (
-    <div key={i} style={{
-      position: 'absolute', inset: 0,
-      backgroundImage: `url(${s.image})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      opacity: i === current ? 1 : 0,
-      transition: 'none',
-    }} />
-  )
-))}
+        s.video ? (
+          <video key={i} src={s.video} autoPlay muted loop playsInline
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: i === current ? 1 : 0, transition: 'none' }}
+          />
+        ) : (
+          <div key={i} style={{
+            position: 'absolute', inset: 0,
+            backgroundImage: `url(${s.image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: i === current ? 1 : 0,
+            transition: 'none',
+          }} />
+        )
+      ))}
+
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(0deg, rgba(5,15,20,.88) 0%, rgba(5,15,20,.6) 45%, rgba(5,15,20,.3) 100%)', zIndex: 1 }} />
+
       <CursorNext onNext={() => goToSlide((current + 1) % slides.length)} />
-      <div style={{ position: 'absolute', top: 0, left: 60, right: '50%', bottom: 0, zIndex: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+
+      <div style={{ position: 'absolute', top: 0, left: 60, right: '50%', bottom: 0, zIndex: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <h1 key={titleKey} style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(48px, 7vw, 100px)', lineHeight: .95, margin: 0 }}>
           {slide.lines.map((line, i) => (
             <div key={i} style={{ color: slide.lineColors[i] }}>{line}</div>
@@ -80,7 +85,8 @@ export default function HeroSliderEN() {
           </a>
         </div>
       </div>
-      <a href={slide.srv.href} style={{ position: 'absolute', bottom: 40, right: 40, zIndex: 3, background: 'rgba(255,255,255,.12)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,.2)', borderRadius: 4, padding: '20px 24px', minWidth: 260, textDecoration: 'none', color: '#fff' }} className="hero-srv-card">
+
+      <a href={slide.srv.href} style={{ position: 'absolute', bottom: 40, right: 40, zIndex: 4, background: 'rgba(255,255,255,.12)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,.2)', borderRadius: 4, padding: '20px 24px', minWidth: 260, textDecoration: 'none', color: '#fff' }} className="hero-srv-card">
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
           <div style={{ fontFamily: 'var(--font-playfair)', fontSize: 18 }}>{slide.srv.title}</div>
           <div style={{ fontSize: 12, opacity: .4 }}>{slide.srv.num}</div>
@@ -88,13 +94,15 @@ export default function HeroSliderEN() {
         <div style={{ fontSize: 12, color: 'rgba(255,255,255,.6)', marginBottom: 14 }}>{slide.srv.desc}</div>
         <div style={{ fontSize: 12, color: 'rgba(255,255,255,.7)' }}>→</div>
       </a>
-      <div style={{ position: 'absolute', bottom: 20, left: '10%', right: '10%', zIndex: 2, display: 'flex', gap: 6 }}>
+
+      <div style={{ position: 'absolute', bottom: 20, left: '10%', right: '10%', zIndex: 4, display: 'flex', gap: 6 }}>
         {slides.map((_, i) => (
           <div key={i} onClick={() => goToSlide(i)} style={{ flex: 1, height: 2, background: 'rgba(255,255,255,.25)', borderRadius: 2, cursor: 'pointer', overflow: 'hidden' }}>
             <div key={`bar-${current}-${i}`} style={{ height: '100%', background: '#fff', borderRadius: 2, width: i < current ? '100%' : '0%', animation: i === current ? `fillBar ${DURATION}ms linear forwards` : 'none' }} />
           </div>
         ))}
       </div>
+
       <style>{`
         @keyframes fillBar { from { width: 0% } to { width: 100% } }
         @media (max-width: 960px) { .hero-srv-card { display: none !important; } }
@@ -111,6 +119,7 @@ function CursorNext({ onNext }) {
     <>
       <div
         onClick={onNext}
+        onTouchEnd={e => { e.preventDefault(); onNext(); }}
         onMouseMove={e => {
           setPos({ x: e.clientX, y: e.clientY });
           const el = document.elementFromPoint(e.clientX, e.clientY);
@@ -143,9 +152,9 @@ function CursorNext({ onNext }) {
       }}>
         <svg viewBox="0 0 100 100" width="100" height="100"
           style={{ position: 'absolute', inset: 0, animation: 'rotateCursor 8s linear infinite' }}>
-          <defs><path id="cp" d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"/></defs>
+          <defs><path id="cpEN" d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"/></defs>
           <text fontSize="9" fill="rgba(255,255,255,0.75)" fontFamily="sans-serif" letterSpacing="3.2">
-            <textPath href="#cp">NEXT · NEXT · NEXT · NEXT · NEXT · NEXT ·</textPath>
+            <textPath href="#cpEN">NEXT · NEXT · NEXT · NEXT · NEXT · NEXT ·</textPath>
           </text>
         </svg>
         <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
