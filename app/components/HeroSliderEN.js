@@ -163,7 +163,7 @@ function CursorNext({ onNext }) {
           </svg>
         </div>
       </div>
-      <style>{`@keyframes rotateCursor { to { transform: rotate(360deg); } } @media(max-width:960px){.hero-click-area{display:none}}`}</style>
+      <style>{`@keyframes rotateCursor { to { transform: rotate(360deg); } } @media(max-width:960px){.hero-click-area{cursor:auto !important;}}`}</style>
     </>
   );
 }
